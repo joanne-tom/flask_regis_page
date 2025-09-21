@@ -1,1 +1,1 @@
-# flask_regis_page
+Just a Flask registration page
