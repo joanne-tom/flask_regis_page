@@ -3,9 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from pymongo import MongoClient
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # session encryption
+app.secret_key = "supersecretkey"  
 
-# MongoDB connection
 client = MongoClient("mongodb://localhost:27017/")
 db = client["flaskworkshop"]
 users = db["users"]
@@ -35,7 +34,6 @@ def register():
         email = request.form["email"]
         password = generate_password_hash(request.form["password"])
 
-        # Check if user exists
         if users.find_one({"email": email}):
             flash("Email already registered. Please login.", "danger")
             return redirect(url_for("login"))
